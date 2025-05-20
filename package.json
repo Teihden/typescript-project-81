@@ -24,7 +24,7 @@
     "test": "vitest"
   },
   "simple-git-hooks": {
-    "pre-push": "make lint"
+    "pre-push": "npm run lint"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
