@@ -1,0 +1,21 @@
+{
+  "include": [
+    "./src",
+  ],
+  "compilerOptions": {
+    "target": "ESNext",
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "noEmit": false,
+    "outDir": "./dist",
+    "moduleResolution": "bundler",
+    "module": "preserve",
+    "allowImportingTsExtensions": false,
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+}
