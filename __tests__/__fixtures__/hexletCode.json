@@ -10,5 +10,11 @@
     "template": { "name": "rob", "job": "hexlet", "gender": "m" },
     "attributes": { "url": "/users" },
     "expected": "<form action=\"/users\" method=\"post\"></form>"
+  },
+  {
+    "name": "form2",
+    "template": { "name": "rob", "job": "hexlet", "gender": "m" },
+    "attributes": { "method": "post" },
+    "expected": "<form action=\"#\" method=\"post\"><input name=\"name\" type=\"text\" value=\"rob\"><textarea cols=\"20\" rows=\"40\" name=\"job\" as=\"textarea\">hexlet</textarea></form>\n"
   }
 ]

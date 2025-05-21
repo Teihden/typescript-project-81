@@ -13,7 +13,7 @@ describe("Tag (fixtures)", () => {
     test(name, () => {
       const tag = new Tag(
         args[0] as string,
-        (args[1] as Record<string, string>) ?? {},
+        (args[1] as Record<string, string | number>) ?? {},
         (args[2] as string) ?? "",
       );
       expect(tag.toString()).toBe(expected);

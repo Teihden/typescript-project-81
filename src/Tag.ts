@@ -18,6 +18,7 @@ class Tag {
     [ "br", "single" ],
     [ "img", "single" ],
     [ "input", "single" ],
+    [ "textarea", "double" ],
     [ "label", "double" ],
     [ "div", "double" ],
   ]);
@@ -31,7 +32,7 @@ class Tag {
    */
   constructor(
     public tagName: string,
-    public attributes: Record<string, string> = {},
+    public attributes: Record<string, string | number> = {},
     public textContent = "",
   ) {
   }
@@ -40,7 +41,7 @@ class Tag {
    * Преобразует текущий объект в строковое представление одиночного HTML-тега.
    * @return {string} Строка, представляющая одиночный HTML-тег с указанными атрибутами.
    */
-  protected toStringSingleTag(): string {
+  private toStringSingleTag(): string {
     const attributes = Object.entries(this.attributes ?? {})
       .map(([ key, value ]) => `${key}="${value}"`)
       .join(" ");
@@ -53,7 +54,7 @@ class Tag {
    * Генерирует строку с открывающим и закрывающим тегами, включая текстовое содержимое и атрибуты.
    * @return {string} Строковое представление HTML-тега с атрибутами и текстовым содержимым.
    */
-  protected toStringDoubleTag(): string {
+  private toStringDoubleTag(): string {
     const attributes = Object.entries(this.attributes ?? {})
       .map(([ key, value ]) => `${key}="${value}"`)
       .join(" ");
