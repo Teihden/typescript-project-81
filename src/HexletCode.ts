@@ -21,6 +21,7 @@ class HexletCode {
   static readonly tagAttributesMap = new Map([
     [ "input", { type: "text" } ],
     [ "textarea", { cols: 20, rows: 40 } ],
+    [ "form", { action: "#", method: "post" } ],
   ]);
 
   /**
@@ -42,7 +43,14 @@ class HexletCode {
       cb(instance);
     }
 
-    return `<form action="${attributes.url ?? "#"}" method="post">${instance.inputString}</form>`;
+    const tagDefaultAttributes = HexletCode.tagAttributesMap.get("form") ?? {};
+    const actionAttribute = attributes.url ? { action: attributes.url } : {};
+    const formAttributes = {
+      ...tagDefaultAttributes,
+      ...actionAttribute,
+    };
+
+    return new Tag("form", formAttributes, instance.inputString).toString();
   }
 
   /**
@@ -65,6 +73,7 @@ class HexletCode {
     if (!(name in this.template)) {
       throw new Error(`Field '${name}' does not exist in the template.`);
     }
+
     return this.template[name] ?? "";
   }
 
