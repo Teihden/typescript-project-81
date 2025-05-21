@@ -35,7 +35,7 @@ class Tag {
   constructor(
     public tagName: string,
     public attributes: IAttributes = {},
-    public textContent: string = "",
+    public textContent = "",
   ) {
   }
 

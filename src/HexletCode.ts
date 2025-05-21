@@ -36,7 +36,6 @@ class HexletCode {
     return this.template[name] ?? "";
   }
 
-
   input(
     name: string,
     cfg: IHexletCodeCfg = {},
