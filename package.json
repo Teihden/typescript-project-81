@@ -1,6 +1,6 @@
 {
   "name": "@hexlet/code",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "form Generator",
   "author": "Teihden",
   "license": "ISC",
@@ -18,9 +18,9 @@
     "node": ">=21"
   },
   "scripts": {
-    "build": "rimraf ./dist && tsc",
     "start": "nodemon",
     "exec": "npx tsx ./src/index.ts",
+    "build": "rimraf ./dist && tsc",
     "lint": "npx eslint ./src/*",
     "test": "vitest"
   },
