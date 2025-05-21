@@ -1,5 +1,7 @@
 # Project "Form Generator"
-[![Actions Status](https://github.com/Teihden/typescript-project-81/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Teihden/typescript-project-81/actions)
+[![Actions Status](https://github.com/Teihden/typescript-project-81/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Teihden/typescript-project-81/actions/workflows/hexlet-check.yml)
+[![CI](https://github.com/Teihden/typescript-project-81/actions/workflows/ci.yml/badge.svg)](https://github.com/Teihden/typescript-project-81/actions/workflows/ci.yml)
+[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=Teihden_typescript-project-81)
 
 ## About
 **"Form Generator"** is a library. It takes care of error handling and other tasks for which you usually need to write a lot of template code.
@@ -25,6 +27,9 @@ make start
 # Cleans the frontend build directory (frontend/build) and runs the build process
 make build
 
-# Runs test
+# Runs test with Vitest
 make test
+
+# Runs test-coverage
+make test-covergae
 ```

@@ -80,3 +80,6 @@ tests/_support/_generated
 
 # runtime
 /runtime
+
+# test-coverage
+/coverage
