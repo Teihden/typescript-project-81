@@ -1,7 +1,7 @@
 # Project "Form Generator"
 [![Actions Status](https://github.com/Teihden/typescript-project-81/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Teihden/typescript-project-81/actions/workflows/hexlet-check.yml)
 [![CI](https://github.com/Teihden/typescript-project-81/actions/workflows/ci.yml/badge.svg)](https://github.com/Teihden/typescript-project-81/actions/workflows/ci.yml)
-[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=Teihden_typescript-project-81)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Teihden_typescript-project-81&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Teihden_typescript-project-81)
 
 ## About
 **"Form Generator"** is a library. It takes care of error handling and other tasks for which you usually need to write a lot of template code.
