@@ -14,7 +14,7 @@
  * - toString: Определяет тип тега (одинарный или двойной) и возвращает соответствующее строковое представление.
  */
 class Tag {
-  static tagMap = new Map([
+  static readonly tagMap = new Map([
     [ "br", "single" ],
     [ "img", "single" ],
     [ "input", "single" ],
@@ -45,7 +45,7 @@ class Tag {
       .map(([ key, value ]) => `${key}="${value}"`)
       .join(" ");
 
-    return `<${this.tagName}${attributes ? ` ${attributes}` : ""}>`;
+    return `<${this.tagName}${attributes ? " " + attributes : ""}>`;
   }
 
   /**
@@ -58,7 +58,7 @@ class Tag {
       .map(([ key, value ]) => `${key}="${value}"`)
       .join(" ");
 
-    return `<${this.tagName}${attributes ? ` ${attributes}` : ""}>${this.textContent}</${this.tagName}>`;
+    return `<${this.tagName}${attributes ? " " + attributes : ""}>${this.textContent}</${this.tagName}>`;
   }
 
   /**
