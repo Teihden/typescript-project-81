@@ -1,0 +1,14 @@
+[
+  {
+    "name": "form0",
+    "template": { "name": "rob", "job": "hexlet", "gender": "m" },
+    "attributes": {},
+    "expected": "<form action=\"#\" method=\"post\"></form>"
+  },
+  {
+    "name": "form1",
+    "template": { "name": "rob", "job": "hexlet", "gender": "m" },
+    "attributes": { "url": "/users" },
+    "expected": "<form action=\"/users\" method=\"post\"></form>"
+  }
+]

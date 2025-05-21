@@ -14,6 +14,7 @@ export default [
       "**/*.{js,ts}",
     ],
     rules: {
+      "@typescript-eslint/no-empty-object-type": [ "error", "always" ],
       "@typescript-eslint/no-empty-function": [ "error", { allow: [ "arrowFunctions" ] } ],
       "@stylistic/array-bracket-spacing": [ "error", "always" ],
       "@stylistic/semi": [ "error", "always" ],

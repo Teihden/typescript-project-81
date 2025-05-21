@@ -17,6 +17,7 @@
     "allowImportingTsExtensions": false,
     "esModuleInterop": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "resolveJsonModule": true
   },
 }

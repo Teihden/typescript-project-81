@@ -1,0 +1,47 @@
+[
+  {
+    "name": "br0",
+    "args": [ "br" ],
+    "expected": "<br>"
+  },
+  {
+    "name": "img0",
+    "args": [ "img" ],
+    "expected": "<img>"
+  },
+  {
+    "name": "img1",
+    "args": [ "img", { "src": "path/to/image" } ],
+    "expected": "<img src=\"path/to/image\">"
+  },
+  {
+    "name": "input0",
+    "args": [ "input" ],
+    "expected": "<input>"
+  },
+  {
+    "name": "input1",
+    "args": [ "input", { "type": "submit", "value": "Save" } ],
+    "expected": "<input type=\"submit\" value=\"Save\">"
+  },
+  {
+    "name": "label0",
+    "args": [ "label" ],
+    "expected": "<label></label>"
+  },
+  {
+    "name": "label1",
+    "args": [ "label", {}, "Email" ],
+    "expected": "<label>Email</label>"
+  },
+  {
+    "name": "label2",
+    "args": [ "label", { "for": "email" }, "Email" ],
+    "expected": "<label for=\"email\">Email</label>"
+  },
+  {
+    "name": "div",
+    "args": [ "div" ],
+    "expected": "<div></div>"
+  }
+]

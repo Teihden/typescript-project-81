@@ -1,14 +1,19 @@
-import { expect, test } from "vitest";
+import { describe, expect, test } from "vitest";
 import HexletCode from "../src/HexletCode";
+import fixtures from "./__fixtures__/hexletCode.json";
 
-test("form0", () => {
-  const template = { name: "rob", job: "hexlet", gender: "m" };
-  const html = HexletCode.formFor(template, {}, () => {});
-  expect(html).toBe('<form action="#" method="post"></form>');
-});
+interface IHexletCodeFixtures {
+  name: string
+  template: Record<string, string>
+  attributes: Record<string, string | undefined>
+  expected: string
+}
 
-test("form1", () => {
-  const template = { name: "rob", job: "hexlet", gender: "m" };
-  const html = HexletCode.formFor(template, { url: "/users" }, () => {});
-  expect(html).toBe('<form action="/users" method="post"></form>');
+describe("HexletCode (fixtures)", () => {
+  fixtures.forEach(({ name, template, attributes, expected }: IHexletCodeFixtures) => {
+    test(name, () => {
+      const html = HexletCode.formFor(template, attributes, () => {});
+      expect(html).toBe(expected);
+    });
+  });
 });
