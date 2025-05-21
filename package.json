@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "0.4.0",
-  "description": "form Generator",
+  "description": "form generator",
   "author": "Teihden",
   "license": "ISC",
   "type": "module",
@@ -13,7 +13,7 @@
     "url": "https://github.com/Teihden/typescript-project-81/issues"
   },
   "homepage": "https://github.com/Teihden/typescript-project-81#readme",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "engines": {
     "node": ">=21"
   },
