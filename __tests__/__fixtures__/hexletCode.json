@@ -15,6 +15,6 @@
     "name": "form2",
     "template": { "name": "rob", "job": "hexlet", "gender": "m" },
     "attributes": { "method": "post" },
-    "expected": "<form action=\"#\" method=\"post\"><input name=\"name\" type=\"text\" value=\"rob\"><textarea cols=\"20\" rows=\"40\" name=\"job\" as=\"textarea\">hexlet</textarea></form>\n"
+    "expected": "<form action=\"#\" method=\"post\"><input name=\"name\" type=\"text\" value=\"rob\"><textarea cols=\"20\" rows=\"40\" name=\"job\" as=\"textarea\">hexlet</textarea></form>"
   }
 ]
