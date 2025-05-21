@@ -1,16 +1,19 @@
 import Tag from "./Tag";
+import { IAttributes, IHexletCodeCb, IHexletCodeCfg } from "../globals";
 
 class HexletCode {
   private inputString = "";
 
   static readonly tagAttributesMap = new Map([
-    [ "textarea", { rows: 20, cols: 40 } ],
+    [ "input", { type: "text" } ],
+    [ "textarea", { cols: 20, rows: 40 } ],
   ]);
 
   static formFor(
     template: Record<string, string>,
-    attributes: Record<string, string | undefined> = {},
-    cb: ( instance?: HexletCode ) => void = () => {},
+    attributes: IAttributes = {},
+    cb: IHexletCodeCb = () => {
+    },
   ): string {
     const instance = new HexletCode(template);
 
@@ -26,19 +29,32 @@ class HexletCode {
   ) {
   }
 
-  input(key: string, cfg: Record<string, string | undefined> = {}) {
-    let value;
-
-    if (this.template[key]) {
-      value = this.template[key] ?? "";
-    } else {
-      throw Error(`Field ${key} does not exist in the template.`);
+  #getFieldValue(name: string): string {
+    if (!(name in this.template)) {
+      throw new Error(`Field '${name}' does not exist in the template.`);
     }
+    return this.template[name] ?? "";
+  }
 
+
+  input(
+    name: string,
+    cfg: IHexletCodeCfg = {},
+  ): void {
+    const fieldValue = this.#getFieldValue(name);
     const tagName = cfg.as ?? "input";
+    const valueAttribute = tagName === "input" ? { value: fieldValue } : {};
+    const tagDefaultAttributes = HexletCode.tagAttributesMap.get(tagName) ?? {};
     const { as, ...restAttributes } = cfg;
-    const attributes = { ...HexletCode.tagAttributesMap.get(tagName) ?? {}, ...restAttributes };
-    this.inputString += new Tag(tagName, attributes, value).toString();
+
+    const attributes = {
+      name,
+      ...tagDefaultAttributes,
+      ...valueAttribute,
+      ...restAttributes,
+    };
+
+    this.inputString += new Tag(tagName, attributes, fieldValue).toString();
   }
 }
 

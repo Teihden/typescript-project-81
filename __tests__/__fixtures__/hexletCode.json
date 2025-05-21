@@ -15,6 +15,30 @@
     "name": "form2",
     "template": { "name": "rob", "job": "hexlet", "gender": "m" },
     "attributes": { "method": "post" },
-    "expected": "<form action=\"#\" method=\"post\"><input name=\"name\" type=\"text\" value=\"rob\"><textarea cols=\"20\" rows=\"40\" name=\"job\" as=\"textarea\">hexlet</textarea></form>"
+    "expected": "<form action=\"#\" method=\"post\"><input name=\"name\" type=\"text\" value=\"rob\"><textarea name=\"job\" cols=\"20\" rows=\"40\">hexlet</textarea></form>"
+  },
+  {
+    "name": "form3",
+    "template": { "name": "rob", "job": "hexlet", "gender": "m" },
+    "attributes": { "method": "post" },
+    "expected": "<form action=\"#\" method=\"post\"><input name=\"name\" type=\"text\" value=\"rob\" class=\"user-input\"><input name=\"job\" type=\"text\" value=\"hexlet\"></form>"
+  },
+  {
+    "name": "form4",
+    "template": { "name": "rob", "job": "hexlet", "gender": "m" },
+    "attributes": {},
+    "expected": "<form action=\"#\" method=\"post\"><textarea name=\"job\" cols=\"20\" rows=\"40\">hexlet</textarea></form>"
+  },
+  {
+    "name": "form5",
+    "template": { "name": "rob", "job": "hexlet", "gender": "m" },
+    "attributes": { "method": "post" },
+    "expected": "<form action=\"#\" method=\"post\"><textarea name=\"job\" cols=\"50\" rows=\"50\">hexlet</textarea></form>"
+  },
+  {
+    "name": "form6",
+    "template": { "name": "rob", "job": "hexlet", "gender": "m" },
+    "attributes": { "method": "post" },
+    "expected": "Field 'age' does not exist in the template."
   }
 ]

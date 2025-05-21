@@ -1,3 +1,5 @@
+import { IAttributes } from "../globals";
+
 /**
  * Класс Tag представляет HTML-тег и предоставляет методы для работы с его строковым представлением.
  *
@@ -32,8 +34,8 @@ class Tag {
    */
   constructor(
     public tagName: string,
-    public attributes: Record<string, string | number> = {},
-    public textContent = "",
+    public attributes: IAttributes = {},
+    public textContent: string = "",
   ) {
   }
 
@@ -41,7 +43,7 @@ class Tag {
    * Преобразует текущий объект в строковое представление одиночного HTML-тега.
    * @return {string} Строка, представляющая одиночный HTML-тег с указанными атрибутами.
    */
-  private toStringSingleTag(): string {
+  #toStringSingleTag(): string {
     const attributes = Object.entries(this.attributes ?? {})
       .map(([ key, value ]) => `${key}="${value}"`)
       .join(" ");
@@ -54,7 +56,7 @@ class Tag {
    * Генерирует строку с открывающим и закрывающим тегами, включая текстовое содержимое и атрибуты.
    * @return {string} Строковое представление HTML-тега с атрибутами и текстовым содержимым.
    */
-  private toStringDoubleTag(): string {
+  #toStringDoubleTag(): string {
     const attributes = Object.entries(this.attributes ?? {})
       .map(([ key, value ]) => `${key}="${value}"`)
       .join(" ");
@@ -68,7 +70,7 @@ class Tag {
    */
   public toString(): string {
     const isDouble = Tag.tagMap.get(this.tagName) === "double";
-    return isDouble ? this.toStringDoubleTag() : this.toStringSingleTag();
+    return isDouble ? this.#toStringDoubleTag() : this.#toStringSingleTag();
   }
 }
 

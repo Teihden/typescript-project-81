@@ -1,7 +1,9 @@
 {
   "include": [
     "./src",
-    "./__tests__",
+  ],
+  "exclude": [
+    "./dist"
   ],
   "compilerOptions": {
     "target": "ESNext",
@@ -11,6 +13,7 @@
     "checkJs": true,
     "strict": true,
     "noEmit": false,
+    "rootDir": "./src",
     "outDir": "./dist",
     "moduleResolution": "bundler",
     "module": "preserve",

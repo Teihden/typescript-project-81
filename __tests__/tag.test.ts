@@ -3,9 +3,9 @@ import Tag from "../src/Tag";
 import fixtures from "./__fixtures__/tag.json";
 
 interface ITagFixtures {
-  name: string
-  args: (string | Record<string, string>)[]
-  expected: string
+  name: string;
+  args: (string | Record<string, string>)[];
+  expected: string;
 }
 
 describe("Tag (fixtures)", () => {
