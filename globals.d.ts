@@ -3,12 +3,12 @@ interface IHexletCodeCb {
 }
 
 interface IHexletCodeCfg {
-  [key: string]: string | number | undefined;
+  [key: string]: string | number;
   as?: string;
 }
 
 interface IAttributes {
-  [key: string]: string | number | undefined;
+  [key: string]: string | number;
 }
 
 export {

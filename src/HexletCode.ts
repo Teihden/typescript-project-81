@@ -49,8 +49,11 @@ class HexletCode {
       ...tagDefaultAttributes,
       ...actionAttribute,
     };
+    const filterAttributes = Object.fromEntries(
+      Object.entries(formAttributes).filter(([ _, value ]) => value !== undefined),
+    );
 
-    return new Tag("form", formAttributes, instance.inputString).toString();
+    return new Tag("form", filterAttributes, instance.inputString).toString();
   }
 
   /**
@@ -99,8 +102,11 @@ class HexletCode {
       ...valueAttribute,
       ...restAttributes,
     };
+    const filterAttributes = Object.fromEntries(
+      Object.entries(attributes).filter(([ _, value ]) => value !== undefined),
+    );
 
-    this.inputString += new Tag(tagName, attributes, fieldValue).toString();
+    this.inputString += new Tag(tagName, filterAttributes, fieldValue).toString();
   }
 }
 

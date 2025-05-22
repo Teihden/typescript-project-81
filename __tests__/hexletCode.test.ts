@@ -1,14 +1,7 @@
 import { describe, expect, test } from "vitest";
 import HexletCode from "../src/HexletCode";
 import fixtures from "./__fixtures__/hexletCode.json";
-import { IAttributes, IHexletCodeCb } from "../globals";
-
-interface IHexletCodeFixtures {
-  name: string;
-  template: Record<string, string>;
-  attributes: IAttributes;
-  expected: string;
-}
+import { IHexletCodeCb } from "../globals";
 
 const cb: Record<string, IHexletCodeCb> = {
   "form2": (f: HexletCode) => {
@@ -33,13 +26,17 @@ const cb: Record<string, IHexletCodeCb> = {
 };
 
 describe("HexletCode (fixtures)", () => {
-  fixtures.forEach(({ name, template, attributes, expected }: IHexletCodeFixtures) => {
+  fixtures.forEach(({ name, template, attributes, expected }) => {
+    const filterAttributes = Object.fromEntries(
+      Object.entries(attributes).filter(([ _, value ]) => value !== undefined),
+    );
+
     test(name, () => {
       if (name === "form6") {
-        expect(() => HexletCode.formFor(template, attributes, cb[name] ?? (() => {
+        expect(() => HexletCode.formFor(template, filterAttributes, cb[name] ?? (() => {
         }))).toThrow(expected);
       } else {
-        const html = HexletCode.formFor(template, attributes, cb[name] ?? (() => {
+        const html = HexletCode.formFor(template, filterAttributes, cb[name] ?? (() => {
         }));
         expect(html).toBe(expected);
       }
