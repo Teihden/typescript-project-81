@@ -33,3 +33,33 @@ make test
 # Runs test-coverage
 make test-covergae
 ```
+
+## Examples of usage
+```javascript
+const form = HexletCode.formFor(template, {}, (f) => {
+  f.input('name', {class: 'user-input'});
+  f.input('job');
+});
+
+// <form action="#" method="post">
+//   <input name="name" type="text" value="rob" class="user-input">
+//   <input name="job" type="text" value="hexlet">
+// </form>
+
+
+const form = HexletCode.formFor(template, {}, (f) =>
+  f.input('job', { as: 'textarea' }));
+
+// <form action="#" method="post">
+//   <textarea name="job" cols="20" rows="40">hexlet</textarea>
+// </form>
+
+
+const form = HexletCode.formFor(template, { url: '#' }, (f) =>
+  f.input('job', { as: 'textarea', rows: 50, cols: 50}));
+
+// <form action="#" method="post">
+//   <textarea cols="50" rows="50" name="job">hexlet</textarea>
+// </form>
+
+```
