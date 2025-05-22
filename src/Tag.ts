@@ -46,7 +46,7 @@ export default class Tag {
    */
   #toStringSingleTag(): string {
     const attributes = Object.entries(this.attributes ?? {})
-      .map(([ key, value ]) => `${key}='${value}'`)
+      .map(([ key, value ]) => `${key}="${value}"`)
       .join(' ');
 
     return `<${this.tagName}${attributes ? ' ' + attributes : ''}>`;
@@ -59,7 +59,7 @@ export default class Tag {
    */
   #toStringDoubleTag(): string {
     const attributes = Object.entries(this.attributes ?? {})
-      .map(([ key, value ]) => `${key}='${value}'`)
+      .map(([ key, value ]) => `${key}="${value}"`)
       .join(' ');
 
     return `<${this.tagName}${attributes ? ' ' + attributes : ''}>${this.textContent}</${this.tagName}>`;

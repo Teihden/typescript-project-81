@@ -15,13 +15,13 @@ export default class Tag {
     }
     #toStringSingleTag() {
         const attributes = Object.entries(this.attributes ?? {})
-            .map(([key, value]) => `${key}='${value}'`)
+            .map(([key, value]) => `${key}="${value}"`)
             .join(' ');
         return `<${this.tagName}${attributes ? ' ' + attributes : ''}>`;
     }
     #toStringDoubleTag() {
         const attributes = Object.entries(this.attributes ?? {})
-            .map(([key, value]) => `${key}='${value}'`)
+            .map(([key, value]) => `${key}="${value}"`)
             .join(' ');
         return `<${this.tagName}${attributes ? ' ' + attributes : ''}>${this.textContent}</${this.tagName}>`;
     }
