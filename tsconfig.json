@@ -1,12 +1,12 @@
 {
   "include": [
-    "./src"
+    "./src",
   ],
   "exclude": [
     "./dist"
   ],
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ESNext",
     "skipLibCheck": true,
     "noImplicitAny": true,
     "allowJs": true,
@@ -22,7 +22,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "resolveJsonModule": true,
-    "removeComments": false,
+    "removeComments": true,
     "useDefineForClassFields": false
-  }
+  },
 }
