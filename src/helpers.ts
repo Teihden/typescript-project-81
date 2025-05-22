@@ -10,6 +10,4 @@ const filterObj = (
   Object.entries(obj).filter(([ _, value ]) => value !== undefined && value !== null),
 ) as IAttributes;
 
-export {
-  filterObj,
-};
+export default filterObj;

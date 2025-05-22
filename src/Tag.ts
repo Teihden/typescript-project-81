@@ -15,7 +15,7 @@ import { IAttributes } from "../globals";
  * - toStringDoubleTag: Возвращает строковое представление для двойных HTML-тегов.
  * - toString: Определяет тип тега (одинарный или двойной) и возвращает соответствующее строковое представление.
  */
-class Tag {
+export default class Tag {
   static readonly tagMap = new Map([
     [ "br", "single" ],
     [ "img", "single" ],
@@ -74,5 +74,3 @@ class Tag {
     return isDouble ? this.#toStringDoubleTag() : this.#toStringSingleTag();
   }
 }
-
-export default Tag;

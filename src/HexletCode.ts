@@ -1,12 +1,12 @@
 import Tag from "./Tag";
 import { IAttributes, IHexletCodeCb, IHexletCodeCfg } from "../globals";
 import { capitalize } from "es-toolkit";
-import { filterObj } from "./helpers";
+import filterObj from "./helpers";
 
 /**
  * Класс HexletCode предоставляет функциональность для создания HTML-форм на основе шаблона данных.
  */
-class HexletCode {
+export default class HexletCode {
   /**
    * Переменная, представляющая содержание формы в виде строки.
    * Может использоваться для хранения и обработки данных, введенных пользователем в форме.
@@ -31,7 +31,7 @@ class HexletCode {
    * @return {string} Строка HTML формы.
    */
   static formFor(
-    template: Record<string, string>,
+    template: Record<string, string> = {},
     attributes: IAttributes = {},
     cb: IHexletCodeCb = () => {
     },
@@ -52,7 +52,7 @@ class HexletCode {
    * @return {void} Возвращает экземпляр объекта.
    */
   constructor(
-    public template: Record<string, string>,
+    public template: Record<string, string> = {},
   ) {
   }
 
@@ -105,5 +105,3 @@ class HexletCode {
     this.formContent += `${submitInputString}`;
   }
 }
-
-export default HexletCode;
