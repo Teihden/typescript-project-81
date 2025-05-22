@@ -1,3 +1,4 @@
+// eslint-disable no-unused-vars
 import { IAttributes } from '../globals';
 
 /**
@@ -7,7 +8,11 @@ import { IAttributes } from '../globals';
  */
 const filterObj = (
   obj: Record<string, string | number | undefined | null>): IAttributes => Object.fromEntries(
-  Object.entries(obj).filter(([ _, value ]) => value !== undefined && value !== null),
+  Object
+    .entries(obj)
+    .filter(([ _, value ]) => {
+      return value !== undefined && value !== null;
+    }),
 ) as IAttributes;
 
 export default filterObj;
