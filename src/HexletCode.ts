@@ -1,7 +1,7 @@
 import Tag from "./Tag";
 import { IAttributes, IHexletCodeCb, IHexletCodeCfg } from "../globals";
 import { capitalize } from "es-toolkit";
-import { filterFromUndefined } from "./helpers";
+import { filterObj } from "./helpers";
 
 /**
  * Класс HexletCode предоставляет функциональность для создания HTML-форм на основе шаблона данных.
@@ -54,7 +54,7 @@ class HexletCode {
       ...actionAttribute,
     };
 
-    return new Tag("form", filterFromUndefined(formAttributes), instance.formContent).toString();
+    return new Tag("form", filterObj(formAttributes), instance.formContent).toString();
   }
 
   /**
@@ -104,7 +104,7 @@ class HexletCode {
     };
 
     const labelString = new Tag("label", { for: name }, capitalize(name)).toString();
-    const inputString = new Tag(tagName, filterFromUndefined(attributes), fieldValue).toString();
+    const inputString = new Tag(tagName, filterObj(attributes), fieldValue).toString();
 
     this.formContent += `${labelString}${inputString}`;
   }
@@ -116,7 +116,7 @@ class HexletCode {
       ...tagDefaultAttributes,
       ...valueAttribute,
     };
-    const submitInputString = new Tag("input", filterFromUndefined(attributes), "").toString();
+    const submitInputString = new Tag("input", filterObj(attributes), "").toString();
 
     this.formContent += `${submitInputString}`;
   }

@@ -24,6 +24,7 @@ class Tag {
         ["textarea", "double"],
         ["label", "double"],
         ["div", "double"],
+        ["form", "double"],
     ]);
     /**
      * Создает экземпляр класса.

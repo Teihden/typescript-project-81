@@ -1,28 +1,77 @@
 import Tag from "./Tag";
+import { capitalize } from "es-toolkit";
+import { filterObj } from "./helpers";
+/**
+ * Класс HexletCode предоставляет функциональность для создания HTML-форм на основе шаблона данных.
+ */
 class HexletCode {
     template;
-    inputString = "";
+    /**
+     * Переменная, представляющая содержание формы в виде строки.
+     * Может использоваться для хранения и обработки данных, введенных пользователем в форме.
+     * Изначально инициализируется пустой строкой.
+     * Подлежит обновлению в процессе работы приложения.
+     */
+    formContent = "";
+    /**
+     * Карта атрибутов тегов.
+     * Хранит соответствие между именами HTML-тегов и их атрибутами по умолчанию.
+     * Ключом карты является строка с именем тега.
+     * Значение карты — объект, где ключи представляют имена атрибутов, а значения - их значения по умолчанию.
+     */
     static tagAttributesMap = new Map([
         ["input", { type: "text" }],
+        ["inputSubmit", { type: "submit", value: "Save" }],
         ["textarea", { cols: 20, rows: 40 }],
+        ["form", { action: "#", method: "post" }],
     ]);
+    /**
+     * Создает строку HTML формы на основе переданного шаблона и атрибутов.
+     * @param {Record<string, string>} template Шаблон полей ввода формы.
+     * @param {IAttributes} [attributes={}] Атрибуты формы, такие как URL-адрес и другие параметры.
+     * @param {IHexletCodeCb} [cb=() => {}] Обратный вызов, вызываемый с экземпляром `HexletCode`.
+     * @return {string} Строка HTML формы.
+     */
     static formFor(template, attributes = {}, cb = () => {
     }) {
         const instance = new HexletCode(template);
         if (cb && typeof cb === "function") {
             cb(instance);
         }
-        return `<form action="${attributes.url ?? "#"}" method="post">${instance.inputString}</form>`;
+        const tagDefaultAttributes = HexletCode.tagAttributesMap.get("form") ?? {};
+        const actionAttribute = attributes.url ? { action: attributes.url } : {};
+        const formAttributes = {
+            ...tagDefaultAttributes,
+            ...actionAttribute,
+        };
+        return new Tag("form", filterObj(formAttributes), instance.formContent).toString();
     }
+    /**
+     * Конструктор класса.
+     * @param {Record<string, string>} template Объект, содержащий данные в формате ключ-значение.
+     * @return {void} Возвращает экземпляр объекта.
+     */
     constructor(template) {
         this.template = template;
     }
+    /**
+     * Возвращает значение поля по заданному имени из шаблона.
+     * @param name Имя поля, значение которого требуется получить.
+     * @return Значение указанного поля из шаблона. Если значение поля не задано, возвращается пустая строка.
+     * @throws Ошибка, если указанное поле отсутствует в шаблоне.
+     */
     #getFieldValue(name) {
         if (!(name in this.template)) {
             throw new Error(`Field '${name}' does not exist in the template.`);
         }
         return this.template[name] ?? "";
     }
+    /**
+     * Добавляет строку ввода в строку разметки с указанными атрибутами и значением.
+     * @param {string} name Имя поля, для которого генерируется элемент ввода.
+     * @param {IHexletCodeCfg} [cfg={}] Конфигурация атрибутов для создаваемого элемента ввода. Может включать свойства as для задания типа тега и дополнительные атрибуты.
+     * @return {void}
+     */
     input(name, cfg = {}) {
         const fieldValue = this.#getFieldValue(name);
         const tagName = cfg.as ?? "input";
@@ -35,7 +84,19 @@ class HexletCode {
             ...valueAttribute,
             ...restAttributes,
         };
-        this.inputString += new Tag(tagName, attributes, fieldValue).toString();
+        const labelString = new Tag("label", { for: name }, capitalize(name)).toString();
+        const inputString = new Tag(tagName, filterObj(attributes), fieldValue).toString();
+        this.formContent += `${labelString}${inputString}`;
+    }
+    submit(value = "") {
+        const tagDefaultAttributes = HexletCode.tagAttributesMap.get("inputSubmit") ?? {};
+        const valueAttribute = value ? { value } : {};
+        const attributes = {
+            ...tagDefaultAttributes,
+            ...valueAttribute,
+        };
+        const submitInputString = new Tag("input", filterObj(attributes), "").toString();
+        this.formContent += `${submitInputString}`;
     }
 }
 export default HexletCode;
