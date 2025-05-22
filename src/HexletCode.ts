@@ -1,16 +1,18 @@
 import Tag from "./Tag";
 import { IAttributes, IHexletCodeCb, IHexletCodeCfg } from "../globals";
+import { capitalize } from "es-toolkit";
 
 /**
  * Класс HexletCode предоставляет функциональность для создания HTML-форм на основе шаблона данных.
  */
 class HexletCode {
   /**
-   * Переменная, предназначенная для хранения строки ввода.
-   * Ожидается, что значение будет строкового типа.
-   * Используется для обработки или передачи текстовых данных.
+   * Переменная, представляющая содержание формы в виде строки.
+   * Может использоваться для хранения и обработки данных, введенных пользователем в форме.
+   * Изначально инициализируется пустой строкой.
+   * Подлежит обновлению в процессе работы приложения.
    */
-  private inputString = "";
+  private formContent = "";
 
   /**
    * Карта атрибутов тегов.
@@ -53,7 +55,7 @@ class HexletCode {
       Object.entries(formAttributes).filter(([ _, value ]) => value !== undefined),
     );
 
-    return new Tag("form", filterAttributes, instance.inputString).toString();
+    return new Tag("form", filterAttributes, instance.formContent).toString();
   }
 
   /**
@@ -106,7 +108,10 @@ class HexletCode {
       Object.entries(attributes).filter(([ _, value ]) => value !== undefined),
     );
 
-    this.inputString += new Tag(tagName, filterAttributes, fieldValue).toString();
+    const labelString = new Tag("label", { for: name }, capitalize(name)).toString();
+    const inputString = new Tag(tagName, filterAttributes, fieldValue).toString();
+
+    this.formContent += `${labelString}${inputString}`;
   }
 }
 
