@@ -13,17 +13,12 @@ class HexletCode {
      * Подлежит обновлению в процессе работы приложения.
      */
     formContent = "";
-    /**
-     * Карта атрибутов тегов.
-     * Хранит соответствие между именами HTML-тегов и их атрибутами по умолчанию.
-     * Ключом карты является строка с именем тега.
-     * Значение карты — объект, где ключи представляют имена атрибутов, а значения - их значения по умолчанию.
-     */
     static tagAttributesMap = new Map([
-        ["input", { type: "text" }],
-        ["inputSubmit", { type: "submit", value: "Save" }],
-        ["textarea", { cols: 20, rows: 40 }],
-        ["form", { action: "#", method: "post" }],
+        ["input", ({ name, value } = {}) => ({ name, type: "text", value })],
+        ["inputSubmit", ({ value } = {}) => ({ type: "submit", value })],
+        ["textarea", ({ name } = {}) => ({ cols: 20, rows: 40, name })],
+        ["form", ({ action } = {}) => ({ method: "post", action })],
+        ["label", ({ labelFor } = {}) => ({ for: labelFor })],
     ]);
     /**
      * Создает строку HTML формы на основе переданного шаблона и атрибутов.
@@ -38,13 +33,8 @@ class HexletCode {
         if (cb && typeof cb === "function") {
             cb(instance);
         }
-        const tagDefaultAttributes = HexletCode.tagAttributesMap.get("form") ?? {};
-        const actionAttribute = attributes.url ? { action: attributes.url } : {};
-        const formAttributes = {
-            ...tagDefaultAttributes,
-            ...actionAttribute,
-        };
-        return new Tag("form", filterObj(formAttributes), instance.formContent).toString();
+        const getFormAttributes = HexletCode.tagAttributesMap.get("form") ?? (() => ({}));
+        return new Tag("form", filterObj(getFormAttributes({ action: attributes.url?.toString() ?? "#" })), instance.formContent).toString();
     }
     /**
      * Конструктор класса.
@@ -60,7 +50,7 @@ class HexletCode {
      * @return Значение указанного поля из шаблона. Если значение поля не задано, возвращается пустая строка.
      * @throws Ошибка, если указанное поле отсутствует в шаблоне.
      */
-    #getFieldValue(name) {
+    #getControlValue(name) {
         if (!(name in this.template)) {
             throw new Error(`Field '${name}' does not exist in the template.`);
         }
@@ -73,29 +63,23 @@ class HexletCode {
      * @return {void}
      */
     input(name, cfg = {}) {
-        const fieldValue = this.#getFieldValue(name);
+        const value = this.#getControlValue(name);
         const tagName = cfg.as ?? "input";
-        const valueAttribute = tagName === "input" ? { value: fieldValue } : {};
-        const tagDefaultAttributes = HexletCode.tagAttributesMap.get(tagName) ?? {};
         const { as, ...restAttributes } = cfg;
-        const attributes = {
-            name,
-            ...tagDefaultAttributes,
-            ...valueAttribute,
-            ...restAttributes,
-        };
-        const labelString = new Tag("label", { for: name }, capitalize(name)).toString();
-        const inputString = new Tag(tagName, filterObj(attributes), fieldValue).toString();
+        const getLabelAttributes = HexletCode.tagAttributesMap.get("label") ?? (() => ({}));
+        const labelString = new Tag("label", filterObj(getLabelAttributes({ labelFor: name })), capitalize(name)).toString();
+        const getControlAttributes = HexletCode.tagAttributesMap.get(tagName) ?? (() => ({}));
+        const inputString = new Tag(tagName, filterObj({ ...getControlAttributes({ name, value }), ...restAttributes }), value).toString();
         this.formContent += `${labelString}${inputString}`;
     }
-    submit(value = "") {
-        const tagDefaultAttributes = HexletCode.tagAttributesMap.get("inputSubmit") ?? {};
-        const valueAttribute = value ? { value } : {};
-        const attributes = {
-            ...tagDefaultAttributes,
-            ...valueAttribute,
-        };
-        const submitInputString = new Tag("input", filterObj(attributes), "").toString();
+    /**
+     * Добавляет элемент input с типом submit в содержимое формы.
+     * @param {string} [value] Строковое значение, которое будет использоваться как текст кнопки submit. Если не указано, по умолчанию используется "Save".
+     * @return {void}
+     */
+    submit(value) {
+        const getSubmitInputAttributes = HexletCode.tagAttributesMap.get("inputSubmit") ?? (() => ({}));
+        const submitInputString = new Tag("input", filterObj(getSubmitInputAttributes({ value: value ?? "Save" })), "").toString();
         this.formContent += `${submitInputString}`;
     }
 }

@@ -3,37 +3,37 @@
     "name": "form0",
     "template": { "name": "rob", "job": "hexlet", "gender": "m" },
     "attributes": {},
-    "expected": "<form action=\"#\" method=\"post\"></form>"
+    "expected": "<form method=\"post\" action=\"#\"></form>"
   },
   {
     "name": "form1",
     "template": { "name": "rob", "job": "hexlet", "gender": "m" },
     "attributes": { "url": "/users" },
-    "expected": "<form action=\"/users\" method=\"post\"></form>"
+    "expected": "<form method=\"post\" action=\"/users\"></form>"
   },
   {
     "name": "form2",
     "template": { "name": "rob", "job": "hexlet", "gender": "m" },
     "attributes": { "method": "post" },
-    "expected": "<form action=\"#\" method=\"post\"><label for=\"name\">Name</label><input name=\"name\" type=\"text\" value=\"rob\"><label for=\"job\">Job</label><textarea name=\"job\" cols=\"20\" rows=\"40\">hexlet</textarea></form>"
+    "expected": "<form method=\"post\" action=\"#\"><label for=\"name\">Name</label><input name=\"name\" type=\"text\" value=\"rob\"><label for=\"job\">Job</label><textarea cols=\"20\" rows=\"40\" name=\"job\">hexlet</textarea></form>"
   },
   {
     "name": "form3",
     "template": { "name": "rob", "job": "hexlet", "gender": "m" },
     "attributes": { "method": "post" },
-    "expected": "<form action=\"#\" method=\"post\"><label for=\"name\">Name</label><input name=\"name\" type=\"text\" value=\"rob\" class=\"user-input\"><label for=\"job\">Job</label><input name=\"job\" type=\"text\" value=\"hexlet\"></form>"
+    "expected": "<form method=\"post\" action=\"#\"><label for=\"name\">Name</label><input name=\"name\" type=\"text\" value=\"rob\" class=\"user-input\"><label for=\"job\">Job</label><input name=\"job\" type=\"text\" value=\"hexlet\"></form>"
   },
   {
     "name": "form4",
     "template": { "name": "rob", "job": "hexlet", "gender": "m" },
     "attributes": {},
-    "expected": "<form action=\"#\" method=\"post\"><label for=\"job\">Job</label><textarea name=\"job\" cols=\"20\" rows=\"40\">hexlet</textarea><input type=\"submit\" value=\"Wow\"></form>"
+    "expected": "<form method=\"post\" action=\"#\"><label for=\"job\">Job</label><textarea cols=\"20\" rows=\"40\" name=\"job\">hexlet</textarea><input type=\"submit\" value=\"Wow\"></form>"
   },
   {
     "name": "form5",
     "template": { "name": "rob", "job": "hexlet", "gender": "m" },
     "attributes": { "method": "post" },
-    "expected": "<form action=\"#\" method=\"post\"><label for=\"job\">Job</label><textarea name=\"job\" cols=\"50\" rows=\"50\">hexlet</textarea><input type=\"submit\" value=\"Save\"></form>"
+    "expected": "<form method=\"post\" action=\"#\"><label for=\"job\">Job</label><textarea cols=\"50\" rows=\"50\" name=\"job\">hexlet</textarea><input type=\"submit\" value=\"Save\"></form>"
   },
   {
     "name": "form6",
