@@ -27,13 +27,13 @@
     "name": "form4",
     "template": { "name": "rob", "job": "hexlet", "gender": "m" },
     "attributes": {},
-    "expected": "<form action=\"#\" method=\"post\"><label for=\"job\">Job</label><textarea name=\"job\" cols=\"20\" rows=\"40\">hexlet</textarea></form>"
+    "expected": "<form action=\"#\" method=\"post\"><label for=\"job\">Job</label><textarea name=\"job\" cols=\"20\" rows=\"40\">hexlet</textarea><input type=\"submit\" value=\"Wow\"></form>"
   },
   {
     "name": "form5",
     "template": { "name": "rob", "job": "hexlet", "gender": "m" },
     "attributes": { "method": "post" },
-    "expected": "<form action=\"#\" method=\"post\"><label for=\"job\">Job</label><textarea name=\"job\" cols=\"50\" rows=\"50\">hexlet</textarea></form>"
+    "expected": "<form action=\"#\" method=\"post\"><label for=\"job\">Job</label><textarea name=\"job\" cols=\"50\" rows=\"50\">hexlet</textarea><input type=\"submit\" value=\"Save\"></form>"
   },
   {
     "name": "form6",

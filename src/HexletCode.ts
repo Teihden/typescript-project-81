@@ -1,6 +1,7 @@
 import Tag from "./Tag";
 import { IAttributes, IHexletCodeCb, IHexletCodeCfg } from "../globals";
 import { capitalize } from "es-toolkit";
+import { filterFromUndefined } from "./helpers";
 
 /**
  * Класс HexletCode предоставляет функциональность для создания HTML-форм на основе шаблона данных.
@@ -22,6 +23,7 @@ class HexletCode {
    */
   static readonly tagAttributesMap = new Map([
     [ "input", { type: "text" } ],
+    [ "inputSubmit", { type: "submit", value: "Save" } ],
     [ "textarea", { cols: 20, rows: 40 } ],
     [ "form", { action: "#", method: "post" } ],
   ]);
@@ -51,11 +53,8 @@ class HexletCode {
       ...tagDefaultAttributes,
       ...actionAttribute,
     };
-    const filterAttributes = Object.fromEntries(
-      Object.entries(formAttributes).filter(([ _, value ]) => value !== undefined),
-    );
 
-    return new Tag("form", filterAttributes, instance.formContent).toString();
+    return new Tag("form", filterFromUndefined(formAttributes), instance.formContent).toString();
   }
 
   /**
@@ -97,21 +96,29 @@ class HexletCode {
     const valueAttribute = tagName === "input" ? { value: fieldValue } : {};
     const tagDefaultAttributes = HexletCode.tagAttributesMap.get(tagName) ?? {};
     const { as, ...restAttributes } = cfg;
-
     const attributes = {
       name,
       ...tagDefaultAttributes,
       ...valueAttribute,
       ...restAttributes,
     };
-    const filterAttributes = Object.fromEntries(
-      Object.entries(attributes).filter(([ _, value ]) => value !== undefined),
-    );
 
     const labelString = new Tag("label", { for: name }, capitalize(name)).toString();
-    const inputString = new Tag(tagName, filterAttributes, fieldValue).toString();
+    const inputString = new Tag(tagName, filterFromUndefined(attributes), fieldValue).toString();
 
     this.formContent += `${labelString}${inputString}`;
+  }
+
+  submit(value = ""): void {
+    const tagDefaultAttributes = HexletCode.tagAttributesMap.get("inputSubmit") ?? {};
+    const valueAttribute = value ? { value } : {};
+    const attributes = {
+      ...tagDefaultAttributes,
+      ...valueAttribute,
+    };
+    const submitInputString = new Tag("input", filterFromUndefined(attributes), "").toString();
+
+    this.formContent += `${submitInputString}`;
   }
 }
 

@@ -14,9 +14,11 @@ const cb: Record<string, IHexletCodeCb> = {
   },
   "form4": (f: HexletCode) => {
     f.input("job", { as: "textarea" });
+    f.submit('Wow');
   },
   "form5": (f: HexletCode) => {
     f.input("job", { as: "textarea", rows: 50, cols: 50 });
+    f.submit();
   },
   "form6": (f: HexletCode) => {
     f.input("name");
