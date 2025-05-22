@@ -1,18 +1,18 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
-import stylistic from "@stylistic/eslint-plugin";
+import globals from 'globals';
+import pluginJs from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import stylistic from '@stylistic/eslint-plugin';
 
 // Группа: Стили массивов
 const arrayRules = {
-  "@stylistic/array-bracket-spacing": [ "error", "always" ],
+  '@stylistic/array-bracket-spacing': [ 'error', 'always' ],
 };
 
 // Группа: Стили строк
 const stringRules = {
-  "@stylistic/quotes": [
-    "error",
-    "double",
+  '@stylistic/quotes': [
+    'error',
+    'single',
     {
       avoidEscape: true,
       allowTemplateLiterals: true,
@@ -22,28 +22,28 @@ const stringRules = {
 
 // Группа: Разделители и пунктуация
 const delimiterRules = {
-  "@stylistic/member-delimiter-style": [ "error", {
-    "multiline": {
-      "delimiter": "semi",
-      "requireLast": true,
+  '@stylistic/member-delimiter-style': [ 'error', {
+    'multiline': {
+      'delimiter': 'semi',
+      'requireLast': true,
     },
-    "singleline": {
-      "delimiter": "semi",
-      "requireLast": true,
+    'singleline': {
+      'delimiter': 'semi',
+      'requireLast': true,
     },
-    "multilineDetection": "brackets",
+    'multilineDetection': 'brackets',
   } ],
-  "@stylistic/semi": [ "error", "always" ],
+  '@stylistic/semi': [ 'error', 'always' ],
 };
 
 // Группа: Типы и функции TypeScript
 const typescriptRules = {
-  "@typescript-eslint/consistent-indexed-object-style": "off",
-  "@typescript-eslint/prefer-function-type": "off",
-  "@typescript-eslint/no-unused-vars": "off",
-  "@typescript-eslint/no-empty-function": [
-    "error",
-    { allow: [ "arrowFunctions" ] },
+  '@typescript-eslint/consistent-indexed-object-style': 'off',
+  '@typescript-eslint/prefer-function-type': 'off',
+  '@typescript-eslint/no-unused-vars': 'off',
+  '@typescript-eslint/no-empty-function': [
+    'error',
+    { allow: [ 'arrowFunctions' ] },
   ],
 };
 
@@ -54,7 +54,7 @@ export default [
   ...tseslint.configs.stylisticTypeChecked,
   {
     files: [
-      "**/*.{js,ts}",
+      '**/*.{js,ts}',
     ],
     rules: {
       ...arrayRules,
@@ -64,7 +64,7 @@ export default [
     },
   },
   {
-    ignores: [ "dist/" ],
+    ignores: [ 'dist/' ],
   },
   {
     languageOptions: {

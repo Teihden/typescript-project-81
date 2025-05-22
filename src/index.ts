@@ -1,3 +1,3 @@
-import HexletCode from "./HexletCode";
+import HexletCode from './HexletCode.js';
 
 export default HexletCode;

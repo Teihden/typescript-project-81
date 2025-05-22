@@ -1,4 +1,4 @@
-import { IAttributes } from "../globals";
+import { IAttributes } from '../globals';
 
 /**
  * Класс Tag представляет HTML-тег и предоставляет методы для работы с его строковым представлением.
@@ -17,26 +17,26 @@ import { IAttributes } from "../globals";
  */
 export default class Tag {
   static readonly tagMap = new Map([
-    [ "br", "single" ],
-    [ "img", "single" ],
-    [ "input", "single" ],
-    [ "textarea", "double" ],
-    [ "label", "double" ],
-    [ "div", "double" ],
-    [ "form", "double" ],
+    [ 'br', 'single' ],
+    [ 'img', 'single' ],
+    [ 'input', 'single' ],
+    [ 'textarea', 'double' ],
+    [ 'label', 'double' ],
+    [ 'div', 'double' ],
+    [ 'form', 'double' ],
   ]);
 
   /**
    * Создает экземпляр класса.
    * @param {string} tagName Имя тега.
    * @param {Record<string, string>} [attributes={}] Атрибуты тега, представленные в виде объекта ключ-значение.
-   * @param {string} [textContent=""] Текстовое содержимое тега.
+   * @param {string} [textContent=''] Текстовое содержимое тега.
    * @return {void}
    */
   constructor(
     public tagName: string,
     public attributes: IAttributes = {},
-    public textContent = "",
+    public textContent = '',
   ) {
   }
 
@@ -46,10 +46,10 @@ export default class Tag {
    */
   #toStringSingleTag(): string {
     const attributes = Object.entries(this.attributes ?? {})
-      .map(([ key, value ]) => `${key}="${value}"`)
-      .join(" ");
+      .map(([ key, value ]) => `${key}='${value}'`)
+      .join(' ');
 
-    return `<${this.tagName}${attributes ? " " + attributes : ""}>`;
+    return `<${this.tagName}${attributes ? ' ' + attributes : ''}>`;
   }
 
   /**
@@ -59,10 +59,10 @@ export default class Tag {
    */
   #toStringDoubleTag(): string {
     const attributes = Object.entries(this.attributes ?? {})
-      .map(([ key, value ]) => `${key}="${value}"`)
-      .join(" ");
+      .map(([ key, value ]) => `${key}='${value}'`)
+      .join(' ');
 
-    return `<${this.tagName}${attributes ? " " + attributes : ""}>${this.textContent}</${this.tagName}>`;
+    return `<${this.tagName}${attributes ? ' ' + attributes : ''}>${this.textContent}</${this.tagName}>`;
   }
 
   /**
@@ -70,7 +70,7 @@ export default class Tag {
    * @return {string} Строковое представление тега.
    */
   public toString(): string {
-    const isDouble = Tag.tagMap.get(this.tagName) === "double";
+    const isDouble = Tag.tagMap.get(this.tagName) === 'double';
     return isDouble ? this.#toStringDoubleTag() : this.#toStringSingleTag();
   }
 }

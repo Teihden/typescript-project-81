@@ -23,5 +23,6 @@
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "removeComments": true,
+    "useDefineForClassFields": false
   },
 }
