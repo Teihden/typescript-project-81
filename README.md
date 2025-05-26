@@ -61,5 +61,4 @@ const form = HexletCode.formFor(template, { url: '#' }, (f) =>
 // <form action="#" method="post">
 //   <textarea cols="50" rows="50" name="job">hexlet</textarea>
 // </form>
-
 ```
